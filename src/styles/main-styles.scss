@@ -14,9 +14,16 @@
 
 ;
 
+.brand {
+    @extend %brand !optional
+}
+
 .grid-memory {
     @extend %grid-memory !optional
-};
+}
+
+;
+
 .grid-calculator-display-current-value {
     @extend %grid-calculator-display-current-value !optional
 }

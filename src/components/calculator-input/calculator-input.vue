@@ -9,6 +9,9 @@
             <div>{{ getCurrentValueInpuGett }}</div>
         </div>
     </div>
+    <div class="brand">
+        INNOCV-TEST
+    </div>
 </template>
 <script lang="ts">
 import { calculatorStore, OperatorsEnum } from '@/stores/calculator-store';

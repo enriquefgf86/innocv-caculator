@@ -1,3 +1,4 @@
+@import 'https://fonts.cdnfonts.com/css/digital-numbers';
 $numbers-color-bg-buttons: #97ffcf;
 $numbers-color-buttons: #5c5757;
 $symbols-color-bg-buttons: #5f1854;
@@ -10,9 +11,18 @@ $display-calculator-border-color: #222;
 $memory-bg-color: #ff6f3c;
 $default-white-color: #fcfefe;
 
+
+%brand{
+    color:$default-white-color;
+    font-style: oblique;
+    font-size: small;
+    display: flex;
+    justify-content: end;
+}
 %grid-memory {
     background-color: $memory-bg-color;
-    color: $default-white-color;    font-style: oblique;
+    color: $default-white-color;
+    font-style: oblique;
 
 }
 
@@ -36,6 +46,8 @@ $default-white-color: #fcfefe;
     height: 2.1rem;
     color: $color-default;
     font-size: 21px;
+    font-family: 'Digital Numbers', sans-serif;
+
     text-align: right;
     display: flex;
     flex-direction: row;
@@ -47,6 +59,8 @@ $default-white-color: #fcfefe;
     border-bottom-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
     background-color: $display-calculator-bg-color;
+    display: flex;
+    justify-content: end;
 
 }
 
@@ -122,7 +136,6 @@ $default-white-color: #fcfefe;
 
 }
 
-
 %grid-numbers {
     background-color: $numbers-color-bg-buttons;
     color: $numbers-color-buttons;
@@ -133,8 +146,9 @@ $default-white-color: #fcfefe;
 
 %grid-numbers,
 %grid-actions,
-%grid-symbols,%grid-memory {
-    font-family: Arial, Helvetica, sans-serif;
+%grid-symbols,
+%grid-memory {
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bolder;
     font-size: 1.5rem;
 }

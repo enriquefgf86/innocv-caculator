@@ -14,7 +14,7 @@
 import { calculatorStore, OperatorsEnum } from '@/stores/calculator-store';
 import { mapActions, mapState } from 'pinia';
 import { defineComponent } from 'vue';
-import type { CalculatorNumbers, CalculatorPad } from '../interfaces/interfaces';
+import type { CalculatorPad } from '../interfaces/interfaces';
 
 export default defineComponent({
     name: 'CalculatorNumbers',
@@ -46,7 +46,7 @@ export default defineComponent({
 
 
             //update current value while typing if is number
-            if (value == "." || typeof value == "number") {
+            if ((value == "." || typeof value == "number") || (this.getFormerVAlue && this.getOperatorVAlue && typeof value !== "number" && value !== ".")) {
                 this.updateCurrentValueInput(value)
             }
 
@@ -61,13 +61,11 @@ export default defineComponent({
                 return
             }
 
-
-
             if (typeof value === "string" && value !== "." && this.getCurrentVAlue !== 0) {
                 this.setFormerValueInput(value)
             }
 
-            if (typeof value !== "number" && this.getFormerVAlue && this.getCurrentVAlue && this.getOperatorVAlue) {
+            if (typeof value !== "number" && value != "." && this.getFormerVAlue && this.getCurrentVAlue && this.getOperatorVAlue) {
                 this.getOperationResult()
             }
 
