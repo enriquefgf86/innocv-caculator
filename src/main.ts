@@ -6,8 +6,6 @@ import calculatorInput from "./components/calculator-input/calculator-input.vue"
 import calculatorView from "./view/calculator.vue";
 import calculatorNumbers from './components/calculator-numbers-grid/calculator-numbers-grid.vue';
 
-
-
 import "./assets/main.css";
 
 const app = createApp(App);

@@ -5,10 +5,7 @@ export interface CalculatorStore {
     valueInMemory: number
 };
 
-export interface CalculatorActions {
-    del: { value: string, class: string },
-    ac: { value: string, class: string },
-};
+
 
 export interface CalculatorNumbers {
     [key: string]: {

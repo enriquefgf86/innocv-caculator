@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { calculatorStore, OperatorsEnum } from '@/stores/calculator-store';
-import { mapActions, mapState } from 'pinia';
+import {  mapState } from 'pinia';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
