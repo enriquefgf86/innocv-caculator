@@ -1,3 +1,4 @@
+import type { CalculatorStore } from "@/components/interfaces/interfaces";
 import { defineStore } from "pinia";
 
 export const OperatorsEnum = {
@@ -8,29 +9,40 @@ export const OperatorsEnum = {
   rest: "-",
   equals: "=",
   delete: "DEL",
-  ac: "AC"
+  ac: "AC",
+  memoadd: "M+",
+  memoless: "M-"
 } as const;
 export type OperatorsEnum = typeof OperatorsEnum[keyof typeof OperatorsEnum]
 
 export const calculatorStore = defineStore("calculatorStore", {
-  state: () => ({
+  state: (): CalculatorStore => ({
     currentInputValue: [0.0] as (string | number)[],
     formerInputValue: [0.0] as (string | number)[],
     operatorOnAction: <string>"",
+    valueInMemory: <number>0.0
 
   }),
-
 
   getters: {
     getCurrentValueInput: (state): Array<number | string> => state.currentInputValue,
     getFormervalueInput: (state): Array<number | string> => state.formerInputValue,
-    getOperatorInAction: (state): string => state.operatorOnAction
+    getOperatorInAction: (state): string => state.operatorOnAction,
+    getValueInMemory: (state): number => state.valueInMemory,
 
   },
+
   actions: {
     updateCurrentValueInput(payload: number | string): void {
-this.currentInputValue.includes(".")&&payload==="."?'':
-      this.currentInputValue.push(payload)
+      this.currentInputValue.includes(".") && payload === "." ? '' :
+        this.currentInputValue.push(payload)
+    },
+    
+    async updateCurrentValueFromMemory(): Promise<void> {
+      await this.currentInputValue.push(this.valueInMemory)
+      console.log('pasa', this.currentInputValue);
+
+      this.valueInMemory = 0
     },
 
     async setFormerValueInput(value: string): Promise<void> {
@@ -39,11 +51,18 @@ this.currentInputValue.includes(".")&&payload==="."?'':
       this.resetCurrentValue()
     },
 
+    async setCurrentValueToMemory(): Promise<void> {
+      this.valueInMemory = await Number(this.currentInputValue.join(''));
+      console.log(this.valueInMemory);
+
+      this.resetCurrentValue()
+    },
+
     async setOperatorInAction(value: string): Promise<void> {
       this.operatorOnAction = await value
     },
 
-    async performArithmetic(payload: number): Promise<void> {
+    async getResultOfCalculation(payload: number): Promise<void> {
       this.formerInputValue = await [];
 
       await this.formerInputValue.push(payload)

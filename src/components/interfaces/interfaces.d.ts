@@ -1,4 +1,9 @@
-export interface CalculatorStore { };
+export interface CalculatorStore {
+    currentInputValue: (string | number)[],
+    formerInputValue: (string | number)[],
+    operatorOnAction: string,
+    valueInMemory: number
+};
 
 export interface CalculatorActions {
     del: { value: string, class: string },
@@ -18,8 +23,6 @@ export interface CalculatorPad {
     value: string | number;
     class: string;
     dataType: string
-
-
 };
 
 export interface CalculatorSymbols {
@@ -29,20 +32,10 @@ export interface CalculatorSymbols {
     rest: { value: string, class: string },
     dot: { value: string, class: string },
     equals: { value: string, class: string },
-
 };
 
 
 
-export const OperatorsEnum= {
-    dot : ".",
-    div : "÷",
-    mult : "x",
-    plus : "+",
-    rest : "-",
-    equals : "=",
-} as const ;
-export type OperatorsEnum = typeof OperatorsEnum[keyof typeof OperatorsEnum]
 
-  
+
 

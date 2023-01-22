@@ -1,18 +1,15 @@
 <template >
     <div class="calculator-display-container">
-        <div class="calculator-input grid-calculator-display-former-value" >
-            <div>{{ getFormerValueInpuGett }}</div>
-            <div>{{ getOperatorForAction!== operators.equals ? getOperatorForAction : "" }}</div>
-        </div>
-
-        <div class="calculator-input grid-calculator-display-current-value">
-            <div>{{ getCurrentValueInpuGett }}</div>
-        </div>
+        <input readonly class="grid-calculator-display-former-value" type="number" :value="getInputFormerValue">
+        <input readonly type="text" class="operator-slot-input" :value="getOperatorForAction">
+        <input readonly type="number" class=" grid-calculator-display-current-value" :value="getInputCurrentValue">
     </div>
-    <div class="brand">
+
+    <div class="innocv-log">
         INNOCV-TEST
     </div>
 </template>
+
 <script lang="ts">
 import { calculatorStore, OperatorsEnum } from '@/stores/calculator-store';
 import { mapActions, mapState } from 'pinia';
@@ -22,46 +19,44 @@ export default defineComponent({
     name: "CalculatorInput",
     data() {
         return {
-            operators: OperatorsEnum
+            operators: OperatorsEnum,
+            limit: <number>99999999999
         }
     },
 
     methods: {
-        ...mapActions(calculatorStore, {})
+        getExponentialResult(value: number): number {
+
+            if (value > this.limit) {
+                Number(value.toPrecision(7))
+            }
+            return Number(value.toFixed(2))
+        }
     },
     computed: {
-        ...mapState(calculatorStore, ['getCurrentValueInput', 'getFormervalueInput']),
+        ...mapState(calculatorStore, ['getCurrentValueInput', 'getFormervalueInput', 'getOperatorInAction']),
 
-        getCurrentValueInpuGett(): string {
-            let currentValue = this.getCurrentValueInput[0] === 0 ? this.getCurrentValueInput.splice(0, 1).join('') : this.getCurrentValueInput.join('');
+        getInputCurrentValue(): number {
+            let currentValue = +(this.getCurrentValueInput[0] === 0 ? this.getCurrentValueInput.splice(0, 1).join('') : this.getCurrentValueInput.join(''));
 
-            return (currentValue)
+            return this.getExponentialResult(currentValue);
         },
 
-        getFormerValueInpuGett(): string {
-            let formerValue = this.getFormervalueInput.join('');
+        getInputFormerValue(): number {
+            let formerValue = +this.getFormervalueInput.join('');
 
-            return formerValue
+            return this.getExponentialResult(formerValue);
         },
 
         getOperatorForAction(): string {
-            let operatorInAction = calculatorStore().getOperatorInAction;
+            let operatorInAction = this.getOperatorInAction;
 
-            return operatorInAction
+            return operatorInAction === "=" ? "" : operatorInAction
         },
-
-
-
     },
-    watch: {},
-    created() {
-    }
-
 }) 
 </script>
 <style lang="scss">
-
 </style>
 
 
-vue

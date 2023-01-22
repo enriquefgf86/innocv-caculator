@@ -1,95 +1,79 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 .calculator-body {
-    @extend %calculator-body !optional
+  @extend %calculator-body !optional;
 }
-
-;
 
 .calculator-input,
 .current-input-value,
 .operator-value {
-    @extend %calculator-input !optional
+  @extend %calculator-input !optional;
 }
 
-;
+.operator-slot-input {
+  @extend %operator-slot-input;
+}
 
-.brand {
-    @extend %brand !optional
+.former-value-slot-input {
+  @extend %former-value-slot-input;
+}
+
+.innocv-log {
+  @extend %innocv-log !optional;
 }
 
 .grid-memory {
-    @extend %grid-memory !optional
+  @extend %grid-memory !optional;
 }
 
-;
-
 .grid-calculator-display-current-value {
-    @extend %grid-calculator-display-current-value !optional
+  @extend %grid-calculator-display-current-value !optional;
 }
 
 .grid-calculator-display-former-value {
-    @extend %grid-calculator-display-former-value !optional
+  @extend %grid-calculator-display-former-value !optional;
 }
 
 .calculator-display-container {
-    @extend %calculator-display-container !optional
+  @extend %calculator-display-container !optional;
 }
 
 .grid-button {
-    @extend %grid-button !optional
+  @extend %grid-button !optional;
 }
-
-;
 
 .grid-numbers {
-    @extend %grid-numbers
+  @extend %grid-numbers;
 }
-
-;
 
 .grid-symbols {
-    @extend %grid-symbols
+  @extend %grid-symbols;
 }
-
-;
 
 .grid-actions {
-    @extend %grid-actions
+  @extend %grid-actions;
 }
-
-;
-
-.grid-3-span {
-    @extend %grid-3-span
-}
-
-;
-
-.grid-1-span {
-    @extend %grid-1-span
-}
-
-;
-
-.grid-column-invade {
-    @extend %grid-column-invade
-}
-
-;
 
 .grid-number-buttons-container {
-    @extend %grid-number-buttons-container !optional
+  @extend %grid-number-buttons-container !optional;
 }
-
-;
 
 .grid-symbols-buttons-container {
-    @extend %grid-symbols-buttons-container !optional
+  @extend %grid-symbols-buttons-container !optional;
 }
 
-;
-
 .grid-actions-buttons-container {
-    @extend %grid-actions-buttons-container !optional
+  @extend %grid-actions-buttons-container !optional;
+}
+
+.plus-button {
+  @extend %plus-button !optional;
+}
+
+.equal-button {
+  @extend %equal-button !optional;
+}
+
+.numbers-and-symbols {
+  @extend %numbers-and-symbols !optional;
 }
