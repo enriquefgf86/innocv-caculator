@@ -6,7 +6,7 @@
     "src/**/*.vue",
     "cypress/support/component.*",
     "cypress/support/commands.ts"
-  ],
+, "cypress/e2e/calculator-input.cy.ts"  ],
   "exclude": [],
   "compilerOptions": {
     "composite": true

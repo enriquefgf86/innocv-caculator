@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="grid-number-buttons-container">
-            <button @click="calculator(number.value)" :ref="number.dataType"
-                v-for="(number, buttonIndex) in getCalculatorKeyBoard" :key="buttonIndex" :class="number.class">
+            <button @click="calculator(number.value)" v-for="(number, buttonIndex) in getCalculatorKeyBoard"
+                :key="buttonIndex" :data-type="number.dataType" :class="number.class">
                 {{ number.value }}
             </button>
         </div>

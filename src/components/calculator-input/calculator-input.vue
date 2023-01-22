@@ -1,6 +1,6 @@
 <template >
     <div class="calculator-display-container">
-        <input readonly class="grid-calculator-display-former-value" type="number" :value="getInputFormerValue">
+        <input  readonly class="grid-calculator-display-former-value" type="number" :value="getInputFormerValue">
         <input readonly type="text" class="operator-slot-input" :value="getOperatorForAction">
         <input readonly type="number" class=" grid-calculator-display-current-value" :value="getInputCurrentValue">
     </div>
