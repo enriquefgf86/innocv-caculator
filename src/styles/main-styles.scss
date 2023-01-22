@@ -86,6 +86,10 @@
   @extend %equal-button !optional;
 }
 
+.dot-button {
+  @extend %dot-button !optional;
+}
+
 .numbers-and-symbols {
   @extend %numbers-and-symbols !optional;
 }

@@ -65,6 +65,12 @@ export default defineComponent({
                 this.setOperatorInAction(<string>value);
             }
 
+            //setting operation in action if there is already a former value to
+            //calculate with
+            if (this.getFormerVAlue && value === OperatorsEnum.mult) {
+                this.setOperatorInAction(<string>value);
+            }
+
             //not triggering actions cause not values
             if (
                 (!this.getFormerVAlue || this.getFormerVAlue == 0) && this.getCurrentVAlue === 0 &&
@@ -74,11 +80,16 @@ export default defineComponent({
             }
 
 
-            if (this.getFormerVAlue !== 0 && this.getOperatorVAlue && this.getCurrentVAlue === 0 && (this.isOperatorClicked(value) || this.isEqualsOperatorClicked(value))) {
-                this.getOperationResult().catch(error => {
-                    error; setTimeout(() => {
-                        this.resetCalculator()
-                    }, 999);
+            if (this.getFormerVAlue !== 0 && this.getCurrentVAlue === 0 && (this.isOperatorClicked(value) || this.isEqualsOperatorClicked(value))) {
+                this.getOperationResult().then(data => {
+                    if (data == undefined) {
+
+                        setTimeout(() => {
+                            this.resetCalculator()
+                        }, 999);
+                    }
+                }).catch(error => {
+                    error
                 });
             }
 
@@ -259,7 +270,7 @@ export default defineComponent({
                 { value: 0, class: "grid-button grid-numbers  numbers-and-symbols", dataType: "number" },
                 {
                     value: OperatorsEnum.dot,
-                    class: "grid-button grid-symbols  ",
+                    class: "grid-button grid-symbols dot-button  ",
                     dataType: "operator",
                 },
 

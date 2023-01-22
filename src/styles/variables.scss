@@ -33,11 +33,13 @@ $default-white-color: #fcfefe;
   width: 25rem;
   border-radius: 10px;
   position: relative;
-  top: 80px;
-  left: 40%;
   padding-top: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 %operator-slot-input {
@@ -99,7 +101,7 @@ $default-white-color: #fcfefe;
   border-bottom-left-radius: 0.3rem !important;
   font-style: oblique;
   font-size: xx-small;
-  font-family: Arial, Helvetica, sans-serif!important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 %number-slot {
@@ -212,6 +214,12 @@ $default-white-color: #fcfefe;
 
 %equal-button {
   width: 5rem;
+  margin-left: 0.8rem;
+}
+
+%dot-button {
+  width: 5rem;
+  margin-left: 0.8rem;
 }
 
 %numbers-and-symbols {

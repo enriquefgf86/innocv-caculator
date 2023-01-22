@@ -13,6 +13,3 @@ export default defineComponent({
     name: "CalculatorKeyboard",
 })
 </script>
-<style>
-
-</style>
