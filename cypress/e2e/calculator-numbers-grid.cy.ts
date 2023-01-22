@@ -1,3 +1,4 @@
+export { }
 describe('Calculator', () => {
     beforeEach(() => {
         cy.visit('/')
@@ -22,8 +23,8 @@ describe('Calculator', () => {
         cy.get('button[data-type="number"]')
             .first()
             .click()
-        cy.get('button[class="grid-button grid-actions cy-selector"]')
-            .click()
+        cy.get('button[class="grid-button grid-actions cy-selector"]').scrollIntoView()
+            .click({ force: true })
         cy.get("input[class='grid-calculator-display-current-value number-slot']")
             .should('have.value', 0)
     })
