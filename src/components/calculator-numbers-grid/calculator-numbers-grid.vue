@@ -21,14 +21,10 @@ export default defineComponent({
     setup() {
         return {
             operations: {
-                [OperatorsEnum.plus]: (formerValue: number, currentValue: number) =>
-                    (formerValue as number) + (currentValue as number),
-                [OperatorsEnum.div]: (formerValue: number, currentValue: number) =>
-                    (formerValue as number) / (currentValue as number),
-                [OperatorsEnum.rest]: (formerValue: number, currentValue: number) =>
-                    (formerValue as number) - (currentValue as number),
-                [OperatorsEnum.mult]: (formerValue: number, currentValue: number) =>
-                    (formerValue as number) * (currentValue as number),
+                [OperatorsEnum.plus]: (formerValue: number, currentValue: number) => (formerValue as number) + (currentValue as number),
+                [OperatorsEnum.div]: (formerValue: number, currentValue: number) => (formerValue as number) / (currentValue as number),
+                [OperatorsEnum.rest]: (formerValue: number, currentValue: number) => (formerValue as number) - (currentValue as number),
+                [OperatorsEnum.mult]: (formerValue: number, currentValue: number) => (formerValue as number) * (currentValue as number),
             },
         };
     },
@@ -77,11 +73,13 @@ export default defineComponent({
                 return;
             }
 
-            //not triggering actions cause not operator symbol
-            if
-                (this.getFormerVAlue && this.getCurrentVAlue && this.isOperatorClicked(value)
-            ) {
-                return;
+
+            if (this.getFormerVAlue !== 0 && this.getOperatorVAlue && this.getCurrentVAlue === 0 && (this.isOperatorClicked(value) || this.isEqualsOperatorClicked(value))) {
+                this.getOperationResult().catch(error => {
+                    error; setTimeout(() => {
+                        this.resetCalculator()
+                    }, 999);
+                });
             }
 
             //updating former value
@@ -90,9 +88,7 @@ export default defineComponent({
             }
 
             //update current value from memory
-            if (
-                this.isMemoryRecoveryClicked(value) && this.getExistingValueInMemory
-            ) {
+            if (this.isMemoryRecoveryClicked(value) && this.getExistingValueInMemory) {
                 this.updateCurrentValueFromMemory();
             }
 
@@ -130,7 +126,7 @@ export default defineComponent({
                 this.getOperatorVAlue as keyof typeof this.operations
             ](this.getFormerVAlue, this.getCurrentVAlue);
 
-            this.getResultOfCalculation(result);
+            this.getResultOfCalculation(result)
         },
 
         //=======================ACTIONS OF CALCULATOR CHECKER==========================
@@ -141,6 +137,12 @@ export default defineComponent({
                 value === OperatorsEnum.mult ||
                 value === OperatorsEnum.rest ||
                 value === OperatorsEnum.plus
+            );
+        },
+
+        isEqualsOperatorClicked(value: string | number): boolean {
+            return (
+                value === OperatorsEnum.equals
             );
         },
 
@@ -218,7 +220,7 @@ export default defineComponent({
                 },
                 {
                     value: "AC",
-                    class: " grid-button grid-actions  ",
+                    class: " grid-button grid-actions cy-selector",
                     dataType: "delete-all",
                 },
                 {

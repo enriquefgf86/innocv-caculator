@@ -13,8 +13,8 @@ TypeScript cannot handle type information for `.vue` imports by default, so we r
 If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
 1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
 ## Customize configuration
@@ -66,3 +66,7 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+
+### This project is based on Vue, using TypeScript as a type safety extension to help with JavaScript. Some e2e tests were implemented as a sample, as well as some functionalities of a conventional calculator (due to lack of time, features such as negative numbers to include in operations are not available). The project consists of a modular structure, divided into components, view, and rendering of the view in the core App, as well as using SCSS in a centralized file to which all components refer. On the other hand, for communication between the different components and main views, a multi-store upgrade of this new version of Vue 3: Pinia, was used instead of the conventional Vuex. The main difference is that with Pinia, we simply create an asynchronous function where we will change the states in the function itself. In contrast, Vuex will require the use of mutations to alter the state.
+
+### Este proyecto está basado en Vue, utilizando TypeScript como extensión de seguridad de tipos para ayudar con JavaScript. Se implementaron algunas pruebas e2e como muestra, así como algunas funcionalidades de una calculadora convencional (debido a la falta de tiempo, características como números negativos para incluir en operaciones no están disponibles). El proyecto consta de una estructura modular, dividida en componentes, vista y renderizado de la vista en la aplicación principal, además de usar SCSS en un archivo centralizado al que todos los componentes se refieren. Por otro lado, para la comunicación entre los diferentes componentes y vistas principales, se utilizó una actualización de multi-store de esta nueva versión de Vue 3: Pinia, en lugar de Vuex convencional. La principal diferencia es que con Pinia, simplemente creamos una función asíncrona donde cambiaremos los estados en la propia función. En cambio, Vuex requerirá el uso de mutaciones para alterar el estado.

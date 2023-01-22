@@ -20,7 +20,8 @@ export const calculatorStore = defineStore("calculatorStore", {
     currentInputValue: [0.0] as (string | number)[],
     formerInputValue: [0.0] as (string | number)[],
     operatorOnAction: <string>"",
-    valueInMemory: <number>0.0
+    valueInMemory: <number>0.0,
+    mathError: <string>"Ma ERROR",
 
   }),
 
@@ -37,11 +38,9 @@ export const calculatorStore = defineStore("calculatorStore", {
       this.currentInputValue.includes(".") && payload === "." ? '' :
         this.currentInputValue.push(payload)
     },
-    
+
     async updateCurrentValueFromMemory(): Promise<void> {
       await this.currentInputValue.push(this.valueInMemory)
-      console.log('pasa', this.currentInputValue);
-
       this.valueInMemory = 0
     },
 
@@ -53,8 +52,6 @@ export const calculatorStore = defineStore("calculatorStore", {
 
     async setCurrentValueToMemory(): Promise<void> {
       this.valueInMemory = await Number(this.currentInputValue.join(''));
-      console.log(this.valueInMemory);
-
       this.resetCurrentValue()
     },
 
@@ -86,6 +83,22 @@ export const calculatorStore = defineStore("calculatorStore", {
 
     resetCalculator(): void {
       this.$reset();
+    },
+
+    triggerError(): void {
+      this.currentInputValue = [this.mathError]
+      console.log(this.currentInputValue);
+      console.log(this.formerInputValue);
+
+
+      setTimeout(() => {
+        this.clearError()
+      }, 999);
+    }
+    ,
+
+    clearError(): void {
+      this.resetCurrentValue()
     }
   },
 });

@@ -1,10 +1,15 @@
 <template >
     <div class="calculator-display-container">
-        <input  readonly class="grid-calculator-display-former-value" type="number" :value="getInputFormerValue">
+        <input readonly class="grid-calculator-display-former-value" :value="getInputFormerValue">
         <input readonly type="text" class="operator-slot-input" :value="getOperatorForAction">
-        <input readonly type="number" class=" grid-calculator-display-current-value" :value="getInputCurrentValue">
     </div>
 
+    <div class="calculator-display-container display-with-memory">
+        <input readonly type="string" class=" grid-calculator-display-current-value memory-slot"
+            :value="getValueInMemory !== 0 ? '(+ memo)' : ''">
+        <input :maxlength="limit" readonly type="number" class=" grid-calculator-display-current-value number-slot"
+            :value="getInputCurrentValue">
+    </div>
     <div class="innocv-log">
         INNOCV-TEST
     </div>
@@ -12,7 +17,7 @@
 
 <script lang="ts">
 import { calculatorStore, OperatorsEnum } from '@/stores/calculator-store';
-import {  mapState } from 'pinia';
+import { mapState } from 'pinia';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -20,21 +25,17 @@ export default defineComponent({
     data() {
         return {
             operators: OperatorsEnum,
-            limit: <number>99999999999
+            limit: 10
         }
     },
 
     methods: {
         getExponentialResult(value: number): number {
-
-            if (value > this.limit) {
-                Number(value.toPrecision(7))
-            }
-            return Number(value.toFixed(2))
+            return value.toString().length > this.limit ? Number(Number(value.toExponential()).toPrecision(3)) : value;
         }
     },
     computed: {
-        ...mapState(calculatorStore, ['getCurrentValueInput', 'getFormervalueInput', 'getOperatorInAction']),
+        ...mapState(calculatorStore, ['getValueInMemory', 'getCurrentValueInput', 'getFormervalueInput', 'getOperatorInAction']),
 
         getInputCurrentValue(): number {
             let currentValue = +(this.getCurrentValueInput[0] === 0 ? this.getCurrentValueInput.splice(0, 1).join('') : this.getCurrentValueInput.join(''));
@@ -53,10 +54,15 @@ export default defineComponent({
 
             return operatorInAction === "=" ? "" : operatorInAction
         },
+
+        getExistingValueInMemory(): number {
+            return this.getValueInMemory
+        }
     },
 }) 
 </script>
 <style lang="scss">
+
 </style>
 
 

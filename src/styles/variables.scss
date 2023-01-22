@@ -67,8 +67,6 @@ $default-white-color: #fcfefe;
 }
 
 %grid-calculator-display-current-value {
-  border-bottom-left-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
   background-color: $display-calculator-bg-color;
   margin-left: 0.2rem;
   margin-right: 0.4rem;
@@ -79,14 +77,33 @@ $default-white-color: #fcfefe;
   font-weight: bolder;
 }
 
-%calculator-display-container {
+%calculator-display-container,
+%display-with-memory {
   background-color: $display-calculator-border-color;
   width: 20rem;
   height: 16%;
   margin: auto;
   display: grid;
-  grid-template-columns: 93% 7%;
   text-align: right;
+}
+%calculator-display-container {
+  grid-template-columns: 93% 7%;
+}
+
+%display-with-memory {
+  grid-template-columns: 15% 78.7%;
+  height: 2.3rem;
+}
+
+%memory-slot {
+  border-bottom-left-radius: 0.3rem !important;
+  font-style: oblique;
+  font-size: xx-small;
+  font-family: Arial, Helvetica, sans-serif!important;
+}
+
+%number-slot {
+  border-bottom-right-radius: 0.3rem !important;
 }
 
 %grid-calculator-display-former-value,

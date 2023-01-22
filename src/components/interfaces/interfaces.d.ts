@@ -2,7 +2,8 @@ export interface CalculatorStore {
     currentInputValue: (string | number)[],
     formerInputValue: (string | number)[],
     operatorOnAction: string,
-    valueInMemory: number
+    valueInMemory: number,
+    mathError: string
 };
 
 

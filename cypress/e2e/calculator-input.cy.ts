@@ -12,7 +12,7 @@ describe('CalculatorInput', () => {
 
     it('displays the correct current value', () => {
         cy.get('.grid-calculator-display-current-value')
-            .should('have.value', '0');
+            .should('have.value', '');
     });
 
     it('displays the correct operator', () => {
@@ -20,6 +20,6 @@ describe('CalculatorInput', () => {
             .should('have.value', '');
     });
 
-   
+
 });
 

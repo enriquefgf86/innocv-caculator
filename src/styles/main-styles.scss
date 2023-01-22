@@ -26,6 +26,18 @@
   @extend %grid-memory !optional;
 }
 
+.memory-slot {
+  @extend %memory-slot !optional;
+}
+
+.number-slot {
+  @extend %number-slot !optional;
+}
+
+.display-with-memory {
+  @extend %display-with-memory !optional;
+}
+
 .grid-calculator-display-current-value {
   @extend %grid-calculator-display-current-value !optional;
 }
